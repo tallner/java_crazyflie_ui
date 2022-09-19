@@ -1,4 +1,4 @@
-# java_crazyflie_ui
+# Project description of the java_crazyflie_ui
 
 This is an IoT program to read and write data from a Bitcraze drone  
 
