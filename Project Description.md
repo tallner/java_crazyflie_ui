@@ -18,25 +18,31 @@ Needs additional hardware
 - Nothing, this is just for fun
 
 # Features
-JavaFX GUI
+JavaFX GUI - V0.1
 - input control roll, pitch, yaw, thrust
 - output battery level, sensor information
-- button to start a autonomous flight
 - input username
 - input name for the flight
-- enable remote control(API)
 
-MySQL database
+JavaFX GUI - Vlater
+- button to start a autonomous flight
+- enable remote control(API) 
+
+MySQL database - V0.1
 - store data from the current flight
 - sensor data, username, flight details
 
-API
+API - Vlater
 - create an API for remote control, test and document via Swagger
 - read weather data from external API and show on GUI
 
 # Frameworks and tools
-- Crazyflie library
+ V0.1
+ - Crazyflie library
 - Java
 - JavaFX
-- Swagger
 - MySQL
+
+Vlater
+- Swagger
+

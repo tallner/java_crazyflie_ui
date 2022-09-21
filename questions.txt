@@ -1,0 +1,5 @@
+varför kan jag inte starta en tråd igen, alltså starta stoppa starta?
+om jag vill bygga ett api+webservice så att jag kan anropa från e websida, hur göra jag?
+är upplägget ok? tillräckligt för en iot? ui<->pryl<->databas
+
+avancerat: trådar, compilera externt bibilotek till cf. tillräckligt?
