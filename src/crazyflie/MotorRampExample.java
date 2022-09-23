@@ -93,24 +93,19 @@ public class MotorRampExample {
         // send packet with zero thrust to arm the copter
         this.mCrazyflie.sendPacket(new CommanderPacket(0, 0, 0, (char) 0));
         
-        this.mCrazyflie.sendPacket(new CommanderPacket(roll, pitch, yawrate, (char) thrust));
-  /*      
         while (thrust >= 15000) {
             System.out.println("sendPacket: " + thrust);
             this.mCrazyflie.sendPacket(new CommanderPacket(roll, pitch, yawrate, (char) thrust));
-            */
             try {
-                Thread.sleep(1000);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            /*
-            if (thrust >= 30000) {
+            if (thrust >= 20000) {
                 thrust_mult = -10;
             }
             thrust += thrust_step * thrust_mult;
         }
-  */      
         
         this.mCrazyflie.sendPacket(new CommanderPacket(0, 0, 0, (char) 0));
         // Make sure that the last packet leaves before the link is closed

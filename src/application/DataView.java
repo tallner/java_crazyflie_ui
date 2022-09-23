@@ -48,9 +48,9 @@ public class DataView extends VBox {
 	/*
 	private TableView<String> table = new TableView<String>();
 	private TableColumn<String, String> itemColumn;
-	
-	private TextField orderDate;
 	*/
+	private TextField val;
+	
 	private Button btnCrazyConnect;
 	private Button btnCrazyDisconnect;
 	private Button btnCrazyLogStop;
@@ -181,6 +181,12 @@ public class DataView extends VBox {
 				myCrazyflie.stop();
 		    }
 		});
+		
+		
+		val = new TextField();
+		val.setPromptText("value");
+		
+		
 		btnCrazyLogStart = new Button("LogStart");
 		btnCrazyLogStart.setPrefWidth(100);
 		btnCrazyLogStart.setOnAction(new EventHandler<ActionEvent>() {
@@ -189,6 +195,9 @@ public class DataView extends VBox {
 				
 				myLogger = new Logging(myCrazyflie.getCrazyflie());
 				myLogger.start();
+				
+				//LogVals(val,Integer.toString(myLogger.testval));
+
 		    }
 		});
 		
@@ -211,27 +220,18 @@ public class DataView extends VBox {
 		
 		
 		
-		getChildren().addAll(hbox1,hbox2);
+		HBox hbox3 = new HBox();
+		hbox3.setSpacing(10);
+		hbox3.setPadding(new Insets(0,10,10,10));
+		hbox3.getChildren().addAll(val);
+		hbox3.setAlignment(Pos.CENTER_RIGHT);
+		
+		
+		getChildren().addAll(hbox1,hbox2,hbox3);
 		
 		
 	}
+
 	
-	/*
-	public static Thread connectToCF() {
-        Thread newThread;
-        newThread.setDaemon(true);
-        newThread = new Thread(() -> {
-        	int channel = 80;
-	        int datarate = 2;//Crazyradio.DR_250KPS;
-	        
-
-	        ConsoleExample consoleExample = new ConsoleExample(new ConnectionData(channel, datarate),"");
-	        
-	        
-        });
-
-        return newThread;
-    }
-	*/
 	
 }

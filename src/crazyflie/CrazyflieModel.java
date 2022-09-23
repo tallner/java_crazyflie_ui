@@ -29,10 +29,16 @@ public class CrazyflieModel implements Runnable {
 
     private Crazyflie mCrazyflie;
     private StringBuffer consoleBuffer = new StringBuffer();
-    private AtomicBoolean exit = new AtomicBoolean();
     
+    private AtomicBoolean exit = new AtomicBoolean();
     private String name;
     private Thread t;
+    
+    private long thrust;
+    private float pitch;
+    private float roll;
+    private float calibPitch;
+    private float calibRoll;
 
     public CrazyflieModel(ConnectionData connectionData, String _name) {
         
@@ -95,79 +101,93 @@ public class CrazyflieModel implements Runnable {
         return this.mCrazyflie;
     }
 
-    public void rampMotors(long thrust) {
-        int thrust_mult = 1;
-        int thrust_step = 50;
-      //  long thrust = 15000;
-        float pitch = 0;
-        float roll = 0;
-        float yawrate = 0;
-        System.out.println("test");
-        long oldtr = 0;
+    /*
+    pitch --> fram/tillbaka, positiv höjer nosen dvs backar coptern
+    roll --> sidled, positiv lyfter vänstra sidan dvs svänger höger
+    yaw --> snurrar runt, positiv snurrar höger
+    */
+    
+    public void setCalibrationData(float _calibRoll, float _calibPitch) {
+    	//  myCrazyflie.setPitch((float) myRobo.getMouseY());
+        //  myCrazyflie.setRoll((float) myRobo.getMouseX());
+    	calibPitch = _calibPitch;
+    	calibRoll = _calibRoll;
+    	
+    	//System.out.println("Pitch " + calibPitch + "// Roll" + calibRoll);
+    }
+    
+    public void setPitch(double mousePos) {
+    	//pitch --> fram/tillbaka, positiv höjer nosen dvs backar coptern
+    	//pitch -10 - 10 degrees if scaled a 360 circle with 18
+    	this.pitch = (float) Math.floor(((calibPitch - mousePos)/18));
+		//System.out.println("Pitch="+pitch);
+    }
+    
+    public void setThrust(long _thrust) {
+		thrust = _thrust;
+    }
+    
+    public void setRoll(double mousePos) {
+    	//roll --> sidled, positiv lyfter vänstra sidan dvs svänger höger
+    	//roll -10 - 10 degrees if scaled a 360 circle with 18
+		this.roll = (float) Math.floor(((mousePos - calibRoll)/18));
+	//	System.out.println("Roll="+roll);
+    }
+    
+    private void runMotors(float roll,float pitch,float yawrate, long thrust) {
+    	thrust = (thrust < 15000) ? 0 : thrust;
+    	
+    	/*
+    	 * This command will set the attitude controller setpoint for the next 500ms. 
+    	 * After 500ms without net setpoint, the Crazyflie will apply a setpoint with the same thrust but with roll/pitch/yawrate = 0, 
+    	 * this will make the Crazyflie stop accelerate. 
+    	 * After 2secons without new setpoint the Crazyflie will cut power to the motors.
+    	 * thrust 10001 (next to no power) to 60000 (full power).
+    	 * roll and pitch are in degrees
+    	 * yawrate degrees/second
+    	 */
+    	
 
         // send packet with zero thrust to arm the copter
-        this.mCrazyflie.sendPacket(new CommanderPacket(0, 0, 0, (char) oldtr));
-        
-        /*
-        while (thrust >= 15000) {
-        	this.mCrazyflie.sendPacket(new CommanderPacket(roll, pitch, yawrate, (char) thrust));
-        	try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        this.mCrazyflie.sendPacket(new CommanderPacket(0, 0, 0, (char) 0));
+    
+      //  System.out.println("sendPacket: " + roll + pitch + thrust);
+        this.mCrazyflie.sendPacket(new CommanderPacket(roll, pitch, yawrate, (char) thrust));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        	*/
-        
-        
-  //      while (thrust >= 15000) {
-            System.out.println("sendPacket: " + thrust);
-            this.mCrazyflie.sendPacket(new CommanderPacket(roll, pitch, yawrate, (char) thrust));
-            /*
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
-          //  if (thrust >= 30000) {
-          //      thrust_mult = -1;
-          //  }
-           // thrust += thrust_step * thrust_mult;
-       // }
-        
-        
-        //this.mCrazyflie.sendPacket(new CommanderPacket(0, 0, 0, (char) 0));
+        this.mCrazyflie.sendPacket(new CommanderPacket(0, 0, 0, (char) 0));
         // Make sure that the last packet leaves before the link is closed
         // since the message queue is not flushed before closing
-   //     try {
-  //          Thread.sleep(1000);
-  //      } catch (InterruptedException e) {
-  //          e.printStackTrace();
-  //      }
-        
+       
     }
+    
 	
     @Override
 	public void run() {
     	mCrazyflie.connect();
     	
     	while (!exit.get()) {
-			
+    		runMotors(this.roll,this.pitch,0, thrust);
 		}
+    	
     	mCrazyflie.disconnect();
+    	
+    	t.interrupt();
 	}
     
     /** start the underlying thread */
     public void start() {
-       t.start();
-      // System.out.println("Thread " + t.getName() + "is " + t.getState());
+    	exit.set(false);
+    	t.start();
     }
     
  // for stopping the thread
     public void stop()
     {
-        exit.set(true);
-        
+        exit.set(true); 
     }
 
     
