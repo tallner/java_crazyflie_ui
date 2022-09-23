@@ -1,0 +1,503 @@
+package crazyflie;
+
+/*
+acc.x
+acc.y
+acc.z
+baro.asl
+baro.pressure
+baro.temp
+controller.accelz
+controller.actuatorThrust
+controller.cmd_pitch
+controller.cmd_roll
+controller.cmd_thrust
+controller.cmd_yaw
+controller.ctr_yaw
+controller.pitch
+controller.pitchRate
+controller.r_pitch
+controller.r_roll
+controller.r_yaw
+controller.roll
+controller.rollRate
+controller.yaw
+controller.yawRate
+crtp.rxRate
+crtp.txRate
+ctrlINDI.cmd_pitch
+ctrlINDI.cmd_roll
+ctrlINDI.cmd_thrust
+ctrlINDI.cmd_yaw
+ctrlINDI.r_pitch
+ctrlINDI.r_roll
+ctrlINDI.r_yaw
+ctrlMel.accelz
+ctrlMel.cmd_pitch
+ctrlMel.cmd_roll
+ctrlMel.cmd_thrust
+ctrlMel.cmd_yaw
+ctrlMel.i_err_x
+ctrlMel.i_err_y
+ctrlMel.i_err_z
+ctrlMel.r_pitch
+ctrlMel.r_roll
+ctrlMel.r_yaw
+ctrlMel.zdx
+ctrlMel.zdy
+ctrlMel.zdz
+ctrltarget.ax
+ctrltarget.ay
+ctrltarget.az
+ctrltarget.pitch
+ctrltarget.roll
+ctrltarget.vx
+ctrltarget.vy
+ctrltarget.vz
+ctrltarget.x
+ctrltarget.y
+ctrltarget.yaw
+ctrltarget.z
+ctrltargetZ.ax
+ctrltargetZ.ay
+ctrltargetZ.az
+ctrltargetZ.vx
+ctrltargetZ.vy
+ctrltargetZ.vz
+ctrltargetZ.x
+ctrltargetZ.y
+ctrltargetZ.z
+ext_pos.X
+ext_pos.Y
+ext_pos.Z
+extrx.ch0
+extrx.ch1
+extrx.ch2
+extrx.ch3
+extrx.pitch
+extrx.roll
+extrx.thrust
+extrx.yaw
+gyro.x
+gyro.xRaw
+gyro.xVariance
+gyro.y
+gyro.yRaw
+gyro.yVariance
+gyro.z
+gyro.zRaw
+gyro.zVariance
+health.checkStops
+health.motorPass
+health.motorTestCount
+health.motorVarXM1
+health.motorVarXM2
+health.motorVarXM3
+health.motorVarXM4
+health.motorVarYM1
+health.motorVarYM2
+health.motorVarYM3
+health.motorVarYM4
+locSrvZ.tick
+mag.x
+mag.y
+mag.z
+memTst.errCntW
+pid_attitude.pitch_outD
+pid_attitude.pitch_outI
+pid_attitude.pitch_outP
+pid_attitude.roll_outD
+pid_attitude.roll_outI
+pid_attitude.roll_outP
+pid_attitude.yaw_outD
+pid_attitude.yaw_outI
+pid_attitude.yaw_outP
+pid_rate.pitch_outD
+pid_rate.pitch_outI
+pid_rate.pitch_outP
+pid_rate.roll_outD
+pid_rate.roll_outI
+pid_rate.roll_outP
+pid_rate.yaw_outD
+pid_rate.yaw_outI
+pid_rate.yaw_outP
+pm.batteryLevel
+pm.chargeCurrent
+pm.extCurr
+pm.extVbat
+pm.extVbatMV
+pm.state
+pm.vbat
+pm.vbatMV
+posCtl.VXd
+posCtl.VXi
+posCtl.VXp
+posCtl.VZd
+posCtl.VZi
+posCtl.VZp
+posCtl.Xd
+posCtl.Xi
+posCtl.Xp
+posCtl.Yd
+posCtl.Yi
+posCtl.Yp
+posCtl.Zd
+posCtl.Zi
+posCtl.Zp
+posCtl.targetVX
+posCtl.targetVY
+posCtl.targetVZ
+posCtl.targetX
+posCtl.targetY
+posCtl.targetZ
+posCtrlIndi.T_incremented
+posCtrlIndi.T_inner
+posCtrlIndi.T_inner_f
+posCtrlIndi.T_tilde
+posCtrlIndi.accErr_x
+posCtrlIndi.accErr_y
+posCtrlIndi.accErr_z
+posCtrlIndi.accFT_x
+posCtrlIndi.accFT_y
+posCtrlIndi.accFT_z
+posCtrlIndi.accF_x
+posCtrlIndi.accF_y
+posCtrlIndi.accF_z
+posCtrlIndi.accRef_x
+posCtrlIndi.accRef_y
+posCtrlIndi.accRef_z
+posCtrlIndi.accS_x
+posCtrlIndi.accS_y
+posCtrlIndi.accS_z
+posCtrlIndi.angF_pitch
+posCtrlIndi.angF_roll
+posCtrlIndi.angF_yaw
+posCtrlIndi.angS_pitch
+posCtrlIndi.angS_roll
+posCtrlIndi.angS_yaw
+posCtrlIndi.cmd_phi
+posCtrlIndi.cmd_theta
+posCtrlIndi.gyr_p
+posCtrlIndi.gyr_q
+posCtrlIndi.gyr_r
+posCtrlIndi.phi_tilde
+posCtrlIndi.posRef_x
+posCtrlIndi.posRef_y
+posCtrlIndi.posRef_z
+posCtrlIndi.theta_tilde
+posCtrlIndi.velRef_x
+posCtrlIndi.velRef_y
+posCtrlIndi.velRef_z
+posCtrlIndi.velS_x
+posCtrlIndi.velS_y
+posCtrlIndi.velS_z
+posEstAlt.estVZ
+posEstAlt.estimatedZ
+posEstAlt.velocityZ
+pwm.m1_pwm
+pwm.m2_pwm
+pwm.m3_pwm
+pwm.m4_pwm
+radio.isConnected
+radio.rssi
+range.back
+range.front
+range.left
+range.right
+range.up
+range.zrange
+sensfusion6.accZbase
+sensfusion6.gravityX
+sensfusion6.gravityY
+sensfusion6.gravityZ
+sensfusion6.isCalibrated
+sensfusion6.isInit
+sensfusion6.qw
+sensfusion6.qx
+sensfusion6.qy
+sensfusion6.qz
+sitAw.ARDetected
+sitAw.FFAccWZDetected
+sitAw.TuDetected
+stabilizer.intToOut
+stabilizer.pitch
+stabilizer.roll
+stabilizer.rtStab
+stabilizer.thrust
+stabilizer.yaw
+stateEstimate.ax
+stateEstimate.ay
+stateEstimate.az
+stateEstimate.pitch
+stateEstimate.qw
+stateEstimate.qx
+stateEstimate.qy
+stateEstimate.qz
+stateEstimate.roll
+stateEstimate.vx
+stateEstimate.vy
+stateEstimate.vz
+stateEstimate.x
+stateEstimate.y
+stateEstimate.yaw
+stateEstimate.z
+stateEstimateZ.ax
+stateEstimateZ.ay
+stateEstimateZ.az
+stateEstimateZ.quat
+stateEstimateZ.ratePitch
+stateEstimateZ.rateRoll
+stateEstimateZ.rateYaw
+stateEstimateZ.vx
+stateEstimateZ.vy
+stateEstimateZ.vz
+stateEstimateZ.x
+stateEstimateZ.y
+stateEstimateZ.z
+sys.armed
+sys.canfly
+ */
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import se.bitcraze.crazyflie.lib.crazyflie.ConnectionAdapter;
+import se.bitcraze.crazyflie.lib.crazyflie.Crazyflie;
+import se.bitcraze.crazyflie.lib.crazyradio.ConnectionData;
+import se.bitcraze.crazyflie.lib.crazyradio.RadioDriver;
+import se.bitcraze.crazyflie.lib.log.LogConfig;
+import se.bitcraze.crazyflie.lib.log.LogListener;
+import se.bitcraze.crazyflie.lib.log.Logg;
+import se.bitcraze.crazyflie.lib.toc.Toc;
+import se.bitcraze.crazyflie.lib.toc.VariableType;
+import se.bitcraze.crazyflie.lib.usb.UsbLinkJava;
+
+/**
+ * It prints all elements of the Logg table of contents.
+ * Then it adds log configurations:
+ * * the battery voltage
+ * * the barometer temperature & pressue
+ * and prints the values to the console.
+ */
+public class Logging implements Runnable{
+
+    //Variable used to keep main loop occupied until disconnect
+ //   private boolean mConnected = true;
+    private Crazyflie myCrazyflie;
+    
+    private AtomicBoolean exit = new AtomicBoolean();
+    private Thread t;
+    
+  //  private ConnectionData connectionData;
+    
+    private final LogConfig lcBattery = new LogConfig("Battery", 1000);
+    private final LogConfig lcBaro = new LogConfig("Baro", 1000);
+    private final LogConfig lcMotors = new LogConfig("Motors", 1000);
+    
+    private Logg logg;
+
+    /**
+     * Initialize and run the example with the specified connection data
+     *
+     * @param connectionData
+     */
+    public Logging(Crazyflie _myCrazyflie) {
+        // Create a Crazyflie object without specifying any cache dirs
+        myCrazyflie = _myCrazyflie;
+        //TODO: do not use cache
+
+        // Connect some callbacks from the Crazyflie API
+   //     myCrazyflie.getDriver().addConnectionListener(this);
+        logg = this.myCrazyflie.getLogg();
+
+        t = new Thread(this, "LoggerThread");
+    	exit.set(false);
+    	
+    	printLoggingTOC();
+    	addLogConfigs();
+    	
+//    	connectionData = _connectionData;
+    }
+/*
+    public boolean isConnected() {
+        return this.mConnected;
+    }
+
+    private void setConnected(boolean connected) {
+        this.mConnected = connected;
+    }
+
+    /**
+     * This callback is called form the Crazyflie API when a Crazyflie
+     * has been connected and the TOCs have been downloaded.
+     *
+     * @param connectionInfo
+     */
+    //@Override
+    /*
+    public void setupFinished() {
+        System.out.println("Setup finished");
+        
+        printLoggingTOC();
+        
+        addLogConfigs();
+    }*/
+
+    private void printLoggingTOC() {
+        final Toc logToc = this.myCrazyflie.getLogg().getToc();
+        List<String> keyList = new ArrayList<String>(logToc.getTocElementMap().keySet());
+        Collections.sort(keyList);
+        System.out.println("Number of logging elements: " + keyList.size());
+
+        // Print all logging elements
+        for(String completeName : keyList) {
+            System.out.println(completeName);
+        }
+        
+    }
+
+    private void addLogConfigs() {
+        // The definition of the logconfig can be made before the setup is finished
+        
+        lcBattery.addVariable("pm.vbat", VariableType.FLOAT);
+        lcBattery.addVariable("pm.batteryLevel", VariableType.UINT8_T);
+
+        lcBaro.addVariable("baro.temp", VariableType.FLOAT);
+        lcBaro.addVariable("baro.pressure", VariableType.FLOAT);
+        lcBaro.addVariable("baro.asl", VariableType.FLOAT);
+              
+        lcMotors.addVariable("pwm.m1_pwm", VariableType.UINT32_T);
+        lcMotors.addVariable("pwm.m2_pwm", VariableType.UINT32_T);
+        lcMotors.addVariable("pwm.m3_pwm", VariableType.UINT32_T);
+        lcMotors.addVariable("pwm.m4_pwm", VariableType.UINT32_T);
+        /**
+         *  Adding the configuration cannot be done until a Crazyflie is connected and
+         *  the setup is finished, since we need to check that the variables we
+         *  would like to log are in the TOC.
+         */
+        if (logg != null) {
+            logg.addConfig(lcBattery);
+            logg.addConfig(lcBaro);
+            logg.addConfig(lcMotors);
+
+            System.out.println("\nNumber of logConfigs: " + logg.getLogConfigs().size());
+
+            logg.addLogListener(new LogListener() {
+
+                @Override
+                public void logConfigAdded(LogConfig logConfig) {
+                    String msg = "";
+                    if(logConfig.isAdded()) {
+                        msg = "' added";
+                    } else {
+                        msg = "' deleted";
+                    }
+                    System.out.println("LogConfig '" + logConfig.getName() + " (ID: " + logConfig.getId() + ")" + msg);
+                }
+
+                @Override
+                public void logConfigError(LogConfig logConfig) {
+                    System.err.println("Error when logging '" + logConfig.getName() + "': " + logConfig.getErrMsg());
+                }
+
+                @Override
+                public void logConfigStarted(LogConfig logConfig) {
+                    String msg = "";
+                    if(logConfig.isStarted()) {
+                        msg = "' started";
+                    } else {
+                        msg = "' stopped";
+                    }
+                    System.out.println("LogConfig '" + logConfig.getName() + " (ID: " + logConfig.getId() + ")" + msg);
+                }
+
+                @Override
+                public void logDataReceived(LogConfig logConfig, Map<String, Number> data, int timestamp) {
+                    System.out.println("LogConfig '" + logConfig.getName()  + "', timestamp: " + timestamp + ", data : ");
+                    // TODO sort?
+                    for (Entry<String, Number> entry : data.entrySet()) {
+                        System.out.println("\t Name: " + entry.getKey() + ", data: " + entry.getValue());
+                    }
+                }
+
+            });
+
+        }
+    }
+
+    
+    /*
+     * Callback when connection initial connection fails (i.e no Crazyflie at the specified address)
+     * /
+    @Override
+    public void connectionFailed(String msg) {
+        System.out.println("Connection failed: " + msg);
+        setConnected(false);
+    }
+
+    /*
+     * Callback when disconnected after a connection has been made (i.e. Crazyflie moves out of range)
+     * /
+    @Override
+    public void connectionLost(String msg) {
+        System.out.println("Connection lost: " + msg);
+        setConnected(false);
+    }
+
+    /*
+     * Callback when the Crazyflie is disconnected (called in all cases)
+     * /
+    @Override
+    public void disconnected() {
+        System.out.println("Disconnected");
+        setConnected(false);
+    }
+*/
+    /** start the underlying thread */
+    public void start() {
+    	exit.set(false);
+    	t.start();
+    }
+    
+ // for stopping the thread
+    public void stop()
+    {
+        exit.set(true);
+    }
+    
+	@Override
+	public void run() {
+        
+        Logging logging = new Logging(myCrazyflie);
+        
+        //logging.logg.
+        
+     // Start the logging
+        logg.start(lcBattery);
+        logg.start(lcBaro);
+        logg.start(lcMotors);
+		
+		while (!exit.get()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		logg.stop(lcBattery);
+        logg.delete(lcBattery);
+        logg.stop(lcBaro);
+        logg.delete(lcBaro);
+        logg.stop(lcMotors);
+        logg.delete(lcMotors);
+		
+	}
+
+}
