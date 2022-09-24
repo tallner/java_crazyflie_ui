@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import crazyflie.CrazyflieModel;
 import crazyflie.Logging;
 import crazyflie.MotorRampExample;
+import crazyflie.ParameterHandling;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -49,21 +50,24 @@ public class DataView extends VBox {
 	private TableView<String> table = new TableView<String>();
 	private TableColumn<String, String> itemColumn;
 	*/
-	private TextField val;
+	
 	
 	private Button btnCrazyConnect;
 	private Button btnCrazyDisconnect;
 	private Button btnCrazyLogStop;
 	private Button btnCrazyLogStart;
-/*	private Button btnFile;
-	private Button btnMouse;
+	private Button btnReadParams;
+	private Button btnWriteParam;
 	
-	private FileChooser fileChooser;*/
+	private TextField parameterName;
+	private TextField parameterValue;
+
 	
 	private Logging myLogger;
+	private ParameterHandling myParameterHandling;
 	
 	private Robot myRobo;
-//	private ScrollPane myScroll = new ScrollPane();
+
 
 	public DataView() {
 		BuildUI();
@@ -163,6 +167,8 @@ public class DataView extends VBox {
 		hbox1.setAlignment(Pos.CENTER);
 		
 		
+		
+		
 		btnCrazyConnect = new Button("Connect");
 		btnCrazyConnect.setPrefWidth(100);
 		btnCrazyConnect.setOnAction(new EventHandler<ActionEvent>() {
@@ -181,10 +187,6 @@ public class DataView extends VBox {
 				myCrazyflie.stop();
 		    }
 		});
-		
-		
-		val = new TextField();
-		val.setPromptText("value");
 		
 		
 		btnCrazyLogStart = new Button("LogStart");
@@ -214,17 +216,53 @@ public class DataView extends VBox {
 		HBox hbox2 = new HBox();
 		hbox2.setSpacing(10);
 		hbox2.setPadding(new Insets(0,10,10,10));
-		hbox2.getChildren().addAll(btnCrazyConnect,btnCrazyDisconnect,btnCrazyLogStart,btnCrazyLogStop);
+		hbox2.getChildren().addAll(
+				btnCrazyConnect,
+				btnCrazyDisconnect,
+				btnCrazyLogStart,
+				btnCrazyLogStop);
 		hbox2.setAlignment(Pos.BOTTOM_CENTER);
 		
 		
+		
+		parameterName = new TextField();
+		parameterName.setPromptText("Parameter name");
+		parameterName.setTooltip(new Tooltip("Enter parameter name"));
+				
+		parameterValue = new TextField();
+		parameterValue.setPromptText("Parameter value");
+		parameterValue.setTooltip(new Tooltip("Enter parameter value"));
+		
+		btnReadParams = new Button("ReadPara");
+		btnReadParams.setPrefWidth(100);
+		btnReadParams.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				myParameterHandling = new ParameterHandling(myCrazyflie.getCrazyflie());
+				myParameterHandling.start();
+		    }
+		});
+		
+		btnWriteParam = new Button("WritePara");
+		btnWriteParam.setPrefWidth(100);
+		btnWriteParam.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				myParameterHandling.setValue(parameterName.getText(), parameterValue.getText());
+		    }
+		});
 		
 		
 		HBox hbox3 = new HBox();
 		hbox3.setSpacing(10);
 		hbox3.setPadding(new Insets(0,10,10,10));
-		hbox3.getChildren().addAll(val);
-		hbox3.setAlignment(Pos.CENTER_RIGHT);
+		hbox3.getChildren().addAll(				
+				btnReadParams,				
+				btnWriteParam,				
+				parameterName,				
+				parameterValue);
+		hbox3.setAlignment(Pos.BOTTOM_CENTER);
+		
 		
 		
 		getChildren().addAll(hbox1,hbox2,hbox3);

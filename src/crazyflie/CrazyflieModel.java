@@ -119,7 +119,7 @@ public class CrazyflieModel implements Runnable {
     public void setPitch(double mousePos) {
     	//pitch --> fram/tillbaka, positiv höjer nosen dvs backar coptern
     	//pitch -10 - 10 degrees if scaled a 360 circle with 18
-    	this.pitch = (float) Math.floor(((calibPitch - mousePos)/18));
+    	this.pitch = (float) Math.floor(((calibPitch - mousePos)/180));
 		//System.out.println("Pitch="+pitch);
     }
     
@@ -130,7 +130,7 @@ public class CrazyflieModel implements Runnable {
     public void setRoll(double mousePos) {
     	//roll --> sidled, positiv lyfter vänstra sidan dvs svänger höger
     	//roll -10 - 10 degrees if scaled a 360 circle with 18
-		this.roll = (float) Math.floor(((mousePos - calibRoll)/18));
+		this.roll = (float) Math.floor(((mousePos - calibRoll)/180));
 	//	System.out.println("Roll="+roll);
     }
     

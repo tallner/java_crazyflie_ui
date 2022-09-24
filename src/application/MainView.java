@@ -35,7 +35,7 @@ public class MainView {
 		
 		
 		
-		Scene scene = new Scene(root,400,400);
+		Scene scene = new Scene(root,700,700);
 		
 		scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 		System.out.println("hej");

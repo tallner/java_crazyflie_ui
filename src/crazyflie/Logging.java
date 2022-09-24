@@ -266,7 +266,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javafx.scene.control.TextField;
 import se.bitcraze.crazyflie.lib.crazyflie.Crazyflie;
 import se.bitcraze.crazyflie.lib.log.LogConfig;
 import se.bitcraze.crazyflie.lib.log.LogListener;
@@ -293,8 +292,7 @@ public class Logging implements Runnable{
     private final LogConfig lcMotors = new LogConfig("Motors", 1000);
     
     private Logg logg;
-    
-    public int testval=0;
+   
 
     /**
      * Initialize and run the example with the specified connection data
@@ -438,15 +436,11 @@ public class Logging implements Runnable{
     
 	@Override
 	public void run() {
-        
-//        Logging logging = new Logging(myCrazyflie);
 
      // Start the logging
         logg.start(lcBattery);
         logg.start(lcStabilizer);
         logg.start(lcMotors);
-        
-        testval++;
 		
 		while (!exit.get()) {
             try {
