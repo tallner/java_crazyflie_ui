@@ -9,7 +9,7 @@ import javafx.stage.StageStyle;
 public class MainView {
 	
 	private Stage stage;
-	private DataView dataView;
+	private ControllerView dataView;
 	
 	public MainView() {
 		
@@ -27,7 +27,7 @@ public class MainView {
 		
 		
 		
-		dataView = new DataView();
+		dataView = new ControllerView();
 		
 		
 		

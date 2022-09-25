@@ -27,7 +27,7 @@ import javafx.scene.text.TextBoundsType;
 import javafx.scene.input.ScrollEvent;
 
 
-public class DataView extends VBox {
+public class ControllerView extends VBox {
 	/*
 	private TableView<String> table = new TableView<String>();
 	private TableColumn<String, String> itemColumn;
@@ -40,49 +40,25 @@ public class DataView extends VBox {
 	private Button btnCrazyLogStart;
 	private Button btnReadParams;
 	private Button btnWriteParam;
-	private Button btnToDB;
 	
 	private TextField parameterName;
 	private TextField parameterValue;
 
-	
 	private Logging myLogger;
 	private ParameterHandling myParameterHandling;
 	 
 	private Robot myRobo;
 	
-	private LoggerObject myDBLogger;
-
-
-	public DataView() {
+	public ControllerView() {
 		BuildUI();
 	}
 
 	private void BuildUI() {
-	/*	
-		table.setEditable(true);
-		
-		itemColumn = new TableColumn<String, String>("Item");
-		itemColumn.setCellValueFactory(new PropertyValueFactory<String, String>("item"));
-		itemColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-		table.getColumns().add(itemColumn);
-		
-		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		table.setPrefHeight(1000);
-		
-		orderDate = new TextField();
-		orderDate.setPromptText("Date MM/dd/yyyy");
-		Pattern DATE_PATTERN = Pattern.compile("^\\d{2}/\\d{2}/\\d{4}$");
-		*/
 		myRobo = new Robot();
 		
 		int channel = 80;
         int datarate = Crazyradio.DR_2MPS;
         CrazyflieModel myCrazyflie = new CrazyflieModel(new ConnectionData(channel, datarate),"nyTråd");
-		/*btnMouse = new Button("Mouse");
-		btnMouse.setPrefWidth(100);
-		*/
         
         // finns canvas i fx för att rita upp
 		
@@ -103,34 +79,19 @@ public class DataView extends VBox {
         circle.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-             // circle.setCenterX(mouseEvent.getX());
-            //  circle.setCenterY(mouseEvent.getY());
-             //  System.out.println("X: "+myRobo.getMouseX() + ". Y: " + myRobo.getMouseY());
-               
-               
                myCrazyflie.setPitch(myRobo.getMouseY());
                myCrazyflie.setRoll(myRobo.getMouseX());
-               //float factoredVal = ;
-               
-               /*
-               pitch --> fram tillbaka, positiv höjer nosen dvs backar coptern
-               roll --> sidled, positiv lyfter vänstra sidan dvs svänger höger
-               yaw --> snurrar runt, positiv snurrar höger
-               */
             }
         });
 				
-        
         circle.addEventFilter(ScrollEvent.ANY, new EventHandler<ScrollEvent>() {
         	
         	long thrust=15000;
         	@Override
             public void handle(ScrollEvent event) {
                 
-                
                 if (event.getEventType() == ScrollEvent.SCROLL) {
                 	thrust += event.getDeltaY() > 0 ? 1000 : -1000;
-                //	System.out.println(thrust);
                 	
                 	myCrazyflie.setThrust(thrust);
                 }
@@ -182,8 +143,6 @@ public class DataView extends VBox {
 				
 				myLogger = new Logging(myCrazyflie.getCrazyflie());
 				myLogger.start();
-				
-				//LogVals(val,Integer.toString(myLogger.testval));
 
 		    }
 		});
@@ -236,17 +195,6 @@ public class DataView extends VBox {
 				myParameterHandling.setValue(parameterName.getText(), parameterValue.getText());
 		    }
 		});
-		
-		/*
-		btnToDB = new Button("WriteToDB");
-		btnToDB.setPrefWidth(100);
-		btnToDB.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				myDBLogger = new LoggerObject(DatabaseHelper.DbConnect("crazylog"));
-				myDBLogger.createLog("christian", 44, 44, 44, 44, 44, 44, 44, 44, 44);
-		    }
-		});*/
 		
 		HBox hbox3 = new HBox();
 		hbox3.setSpacing(10);

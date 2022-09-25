@@ -1,8 +1,8 @@
 package crazyflie;
 
-import java.io.IOException;
 
-/*
+
+/*PARAMETERS
  *cpu.flash                :       1024 TOC id: 7
 activeMarker.back        :          3 TOC id: 211
 activeMarker.front       :          1 TOC id: 210
@@ -228,8 +228,6 @@ velCtlPid.vzKi           :       15.0 TOC id: 88
 velCtlPid.vzKp           :       25.0 TOC id: 87
  */
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -238,14 +236,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import se.bitcraze.crazyflie.lib.crazyflie.Crazyflie;
 import se.bitcraze.crazyflie.lib.param.ParamListener;
 import se.bitcraze.crazyflie.lib.toc.Toc;
-import se.bitcraze.crazyflie.lib.toc.TocElement;
-import se.bitcraze.crazyflie.lib.toc.VariableType;
-import se.bitcraze.crazyflie.lib.toc.VariableTypeTest;
 
 /**
- * Simple example that connects to the Crazyflie on the given channel and data rate.
- * It triggers reading of all the parameters and displays their values. It then modifies
- * one parameter and reads back it's value. Finally it disconnects.
+ * Triggers reading of all the parameters and displays their values. It then modifies
+ * one parameter and reads back it's value.
  */
 public class ParameterHandling implements Runnable{
 
@@ -256,16 +250,10 @@ public class ParameterHandling implements Runnable{
     
     private Thread t;
 
-    /**
-     * Initialize and run the example with the specified connection data
-     *
-     * @param connectionData
-     */
     public ParameterHandling(Crazyflie _myCrazyflie) {
         
         mCrazyflie = _myCrazyflie;
-        
-        
+
         t = new Thread(this, "ParameterThread");
     	exit.set(false);
     }
@@ -361,14 +349,5 @@ public class ParameterHandling implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		readAllParameters();
-		/*
-		while (!exit.get()) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-		*/
 	}
 }
