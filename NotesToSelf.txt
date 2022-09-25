@@ -35,6 +35,7 @@ Uppgradera cf:s javalib så att man kan använda senaste fw
 GUI flikar med logging, parametrar, controls osv
 Användarmanual(hur styra, hur skriva läsa param, hur logga, osv)
 Komma på nåt annat styrsätt än mus
+Styra remot med streamad kommunikation i websockets eller udp?
 
 Opponering på mig själv
 För ambitiöst/kunde för lite om drönaren - blev mer fokus på att lära sig interfacet, fw, läsa forum osv
@@ -48,3 +49,10 @@ Databas skulle lagt lite tid på design, men hann inte
 Inga testcase
 Ingen bra dokumentation
 All in all, skulle gjort mer research innan jag gav mig in i projektet och avgränsat det så att det fanns tid att göra tester-databas-dokumentation osv
+
+
+Presentation
+- Visa övergripande tanke och att den skalades ner - PPT - vad är crazyflie - övergripande om kommunikationen och libbet för APIet
+- Koppla upp mot drönaren förklara GUIt
+- Gå igenom programmet. FX startas i main -> controller --> crazyflie --> commander --> logger --> database
+- Opponering på sig själv
