@@ -289,9 +289,17 @@ public class Logging implements Runnable{
     private AtomicBoolean exit = new AtomicBoolean();
     private Thread t;
     
-    private final LogConfig lcBattery = new LogConfig("Battery", 1000);
-    private final LogConfig lcStabilizer = new LogConfig("Stabilizer", 1000);
-    private final LogConfig lcMotors = new LogConfig("Motors", 1000);
+    private final LogConfig lcLogger = new LogConfig("Logger", 1000);
+    
+    private float vbat;
+    private int batteryLevel;
+    private float pitch;
+    private float roll;
+    private float yaw;
+    private long m1_pwm;
+    private long m2_pwm; 
+    private long m3_pwm; 
+    private long m4_pwm;
     
     private Logg logg;
     private LoggerObject myDBLogger;
@@ -333,26 +341,25 @@ public class Logging implements Runnable{
     private void addLogConfigs() {
         // The definition of the logconfig can be made before the setup is finished
         
-        lcBattery.addVariable("pm.vbat", VariableType.FLOAT);
-        lcBattery.addVariable("pm.batteryLevel", VariableType.UINT8_T);
+        lcLogger.addVariable("pm.vbat", VariableType.FLOAT);
+    //    lcLogger.addVariable("pm.batteryLevel", VariableType.UINT8_T);
 
-        lcStabilizer.addVariable("stabilizer.pitch", VariableType.FLOAT);
-        lcStabilizer.addVariable("stabilizer.roll", VariableType.FLOAT);
-        lcStabilizer.addVariable("stabilizer.yaw", VariableType.FLOAT);
+        lcLogger.addVariable("stabilizer.pitch", VariableType.FLOAT);
+        lcLogger.addVariable("stabilizer.roll", VariableType.FLOAT);
+        lcLogger.addVariable("stabilizer.yaw", VariableType.FLOAT);
               
-        lcMotors.addVariable("pwm.m1_pwm", VariableType.UINT32_T);
-        lcMotors.addVariable("pwm.m2_pwm", VariableType.UINT32_T);
-        lcMotors.addVariable("pwm.m3_pwm", VariableType.UINT32_T);
-        lcMotors.addVariable("pwm.m4_pwm", VariableType.UINT32_T);
+        lcLogger.addVariable("pwm.m1_pwm", VariableType.UINT32_T);
+        lcLogger.addVariable("pwm.m2_pwm", VariableType.UINT32_T);
+    //    lcLogger.addVariable("pwm.m3_pwm", VariableType.UINT32_T);
+   //     lcLogger.addVariable("pwm.m4_pwm", VariableType.UINT32_T);
         /**
          *  Adding the configuration cannot be done until a Crazyflie is connected and
          *  the setup is finished, since we need to check that the variables we
          *  would like to log are in the TOC.
          */
         if (logg != null) {
-            logg.addConfig(lcBattery);
-            logg.addConfig(lcStabilizer);
-            logg.addConfig(lcMotors);
+            logg.addConfig(lcLogger);
+            
 
             System.out.println("\nNumber of logConfigs: " + logg.getLogConfigs().size());
 
@@ -392,11 +399,31 @@ public class Logging implements Runnable{
                     // TODO sort?
                     for (Entry<String, Number> entry : data.entrySet()) {
                         System.out.println("\t Name: " + entry.getKey() + ", data: " + entry.getValue());
+                        if (entry.getKey().equals("pm.vbat")) vbat = (float) entry.getValue();
+                        if (entry.getKey().equals("pm.batteryLevel")) batteryLevel = (int) entry.getValue();
+                        if (entry.getKey().equals("stabilizer.pitch")) pitch = (float) entry.getValue();
+                        if (entry.getKey().equals("stabilizer.roll")) roll = (float) entry.getValue();
+                        if (entry.getKey().equals("stabilizer.yaw")) yaw = (float) entry.getValue();
+                        if (entry.getKey().equals("pwm.m1_pwm")) m1_pwm = (long) entry.getValue();
+                        if (entry.getKey().equals("pwm.m2_pwm")) m2_pwm = (long) entry.getValue();
+                        if (entry.getKey().equals("pwm.m3_pwm")) m3_pwm = (long) entry.getValue();
+                        if (entry.getKey().equals("pwm.m4_pwm")) m4_pwm = (long) entry.getValue();
+                        
                     }
                     
                     System.out.println("-------------------------------------------------------------------------------");
                     
-    				myDBLogger.createLog("christian", 44, 44, 44, 44, 44, 44, 44, 44, 44);
+    				myDBLogger.createLog(
+    						"christian", 
+    						vbat, 
+    						batteryLevel, 
+    						pitch, 
+    						roll, 
+    						yaw, 
+    						(int) m1_pwm, 
+    						(int) m2_pwm, 
+    						(int) m3_pwm, 
+    						(int) m4_pwm);
                 }
 
             });
@@ -405,33 +432,6 @@ public class Logging implements Runnable{
     }
 
     
-    /*
-     * Callback when connection initial connection fails (i.e no Crazyflie at the specified address)
-     * /
-    @Override
-    public void connectionFailed(String msg) {
-        System.out.println("Connection failed: " + msg);
-        setConnected(false);
-    }
-
-    /*
-     * Callback when disconnected after a connection has been made (i.e. Crazyflie moves out of range)
-     * /
-    @Override
-    public void connectionLost(String msg) {
-        System.out.println("Connection lost: " + msg);
-        setConnected(false);
-    }
-
-    /*
-     * Callback when the Crazyflie is disconnected (called in all cases)
-     * /
-    @Override
-    public void disconnected() {
-        System.out.println("Disconnected");
-        setConnected(false);
-    }
-*/
     /** start the underlying thread */
     public void start() {
     	exit.set(false);
@@ -448,9 +448,8 @@ public class Logging implements Runnable{
 	public void run() {
 
      // Start the logging
-        logg.start(lcBattery);
-        logg.start(lcStabilizer);
-        logg.start(lcMotors);
+        logg.start(lcLogger);
+        
 		
 		while (!exit.get()) {
             try {
@@ -460,12 +459,8 @@ public class Logging implements Runnable{
             }
         }
 		
-		logg.stop(lcBattery);
-        logg.delete(lcBattery);
-        logg.stop(lcStabilizer);
-        logg.delete(lcStabilizer);
-        logg.stop(lcMotors);
-        logg.delete(lcMotors);
+		logg.stop(lcLogger);
+        logg.delete(lcLogger);
 		
 	}
 

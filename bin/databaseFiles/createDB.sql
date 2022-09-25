@@ -5,7 +5,7 @@ use crazylog;
 drop table if exists sensorvalues;
 create table if not exists sensorvalues(
 	log_id int auto_increment,
-    username varchar(50) not null UNIQUE,
+    username varchar(50) not null,
     battery_voltage float,
     battery_soc int,
     pitch float,

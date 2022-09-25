@@ -237,7 +237,7 @@ public class DataView extends VBox {
 		    }
 		});
 		
-		
+		/*
 		btnToDB = new Button("WriteToDB");
 		btnToDB.setPrefWidth(100);
 		btnToDB.setOnAction(new EventHandler<ActionEvent>() {
@@ -246,7 +246,7 @@ public class DataView extends VBox {
 				myDBLogger = new LoggerObject(DatabaseHelper.DbConnect("crazylog"));
 				myDBLogger.createLog("christian", 44, 44, 44, 44, 44, 44, 44, 44, 44);
 		    }
-		});
+		});*/
 		
 		HBox hbox3 = new HBox();
 		hbox3.setSpacing(10);
@@ -255,8 +255,7 @@ public class DataView extends VBox {
 				btnReadParams,				
 				btnWriteParam,				
 				parameterName,				
-				parameterValue,
-				btnToDB);
+				parameterValue);
 		hbox3.setAlignment(Pos.BOTTOM_CENTER);
 		
 		
