@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class databaseHelper {
+public class DatabaseHelper {
 	public static String driver = "jdbc";
 	public static String dbType = "mysql";
 	public static String server = "localhost";
@@ -15,7 +15,7 @@ public class databaseHelper {
 				dbType + "://" + 
 				server +  ":" + portNo +
 				 "/" + database;
-		
+		System.out.println(constr);
 		Connection conn = null;
 		
 		try {

@@ -1,41 +1,23 @@
 package application;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.regex.Pattern;
-
 import crazyflie.CrazyflieModel;
 import crazyflie.Logging;
-import crazyflie.MotorRampExample;
 import crazyflie.ParameterHandling;
-import javafx.collections.ObservableList;
+import database.LoggerObject;
+import databaseHelpers.DatabaseHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.util.converter.DateStringConverter;
-import javafx.util.converter.LongStringConverter;
-import se.bitcraze.crazyflie.lib.crazyflie.Crazyflie.State;
 import se.bitcraze.crazyflie.lib.crazyradio.ConnectionData;
 import se.bitcraze.crazyflie.lib.crazyradio.Crazyradio;
 import javafx.scene.robot.*;
@@ -58,6 +40,7 @@ public class DataView extends VBox {
 	private Button btnCrazyLogStart;
 	private Button btnReadParams;
 	private Button btnWriteParam;
+	private Button btnToDB;
 	
 	private TextField parameterName;
 	private TextField parameterValue;
@@ -65,8 +48,10 @@ public class DataView extends VBox {
 	
 	private Logging myLogger;
 	private ParameterHandling myParameterHandling;
-	
+	 
 	private Robot myRobo;
+	
+	private LoggerObject myDBLogger;
 
 
 	public DataView() {
@@ -253,6 +238,16 @@ public class DataView extends VBox {
 		});
 		
 		
+		btnToDB = new Button("WriteToDB");
+		btnToDB.setPrefWidth(100);
+		btnToDB.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				myDBLogger = new LoggerObject(DatabaseHelper.DbConnect("crazylog"));
+				myDBLogger.createLog("christian", 44, 44, 44, 44, 44, 44, 44, 44, 44);
+		    }
+		});
+		
 		HBox hbox3 = new HBox();
 		hbox3.setSpacing(10);
 		hbox3.setPadding(new Insets(0,10,10,10));
@@ -260,7 +255,8 @@ public class DataView extends VBox {
 				btnReadParams,				
 				btnWriteParam,				
 				parameterName,				
-				parameterValue);
+				parameterValue,
+				btnToDB);
 		hbox3.setAlignment(Pos.BOTTOM_CENTER);
 		
 		

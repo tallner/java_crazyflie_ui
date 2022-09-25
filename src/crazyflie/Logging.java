@@ -266,6 +266,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import database.LoggerObject;
+import databaseHelpers.DatabaseHelper;
 import se.bitcraze.crazyflie.lib.crazyflie.Crazyflie;
 import se.bitcraze.crazyflie.lib.log.LogConfig;
 import se.bitcraze.crazyflie.lib.log.LogListener;
@@ -292,6 +294,7 @@ public class Logging implements Runnable{
     private final LogConfig lcMotors = new LogConfig("Motors", 1000);
     
     private Logg logg;
+    private LoggerObject myDBLogger;
    
 
     /**
@@ -310,6 +313,8 @@ public class Logging implements Runnable{
     	
     	printLoggingTOC();
     	addLogConfigs();
+    	
+    	myDBLogger = new LoggerObject(DatabaseHelper.DbConnect("crazylog"));
     }
 
     private void printLoggingTOC() {
@@ -383,10 +388,15 @@ public class Logging implements Runnable{
                 @Override
                 public void logDataReceived(LogConfig logConfig, Map<String, Number> data, int timestamp) {
                     System.out.println("LogConfig '" + logConfig.getName()  + "', timestamp: " + timestamp + ", data : ");
+                    
                     // TODO sort?
                     for (Entry<String, Number> entry : data.entrySet()) {
                         System.out.println("\t Name: " + entry.getKey() + ", data: " + entry.getValue());
                     }
+                    
+                    System.out.println("-------------------------------------------------------------------------------");
+                    
+    				myDBLogger.createLog("christian", 44, 44, 44, 44, 44, 44, 44, 44, 44);
                 }
 
             });

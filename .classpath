@@ -30,5 +30,6 @@
 	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/se.bitcraze.crazyflie.lib_0.0.2.202209191817.jar"/>
 	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/usb4java-javax_javax.usb.api_1.3.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/tallnerc/Downloads/jar_files (1)/slf4j-simple-1.7.30.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/MySQL Connector J 8.0/mysql-connector-java-8.0.29.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

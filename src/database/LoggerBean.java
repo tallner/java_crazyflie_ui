@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import databaseHelpers.jsonHelper;
 import databaseHelpers.keyvaluepair;
 
-public class loggerBean {
+public class LoggerBean {
 	
 	private int log_id;
 	private String username;
@@ -119,10 +119,18 @@ public class loggerBean {
 
 	public String toJson() {
 		ArrayList<keyvaluepair> datalist = new ArrayList<keyvaluepair>();
-		datalist.add(new keyvaluepair("Name", this._name));
-		datalist.add(new keyvaluepair("Age", Integer.toString(this._age)));
-		datalist.add(new keyvaluepair("Skill", this._skill));
+		datalist.add(new keyvaluepair("username", username));
+		datalist.add(new keyvaluepair("battery_voltage", Float.toString(battery_voltage)));
+		datalist.add(new keyvaluepair("battery_soc", Integer.toString(battery_soc)));
 		
+		datalist.add(new keyvaluepair("pitch", Float.toString(pitch)));
+		datalist.add(new keyvaluepair("roll", Float.toString(roll)));
+		datalist.add(new keyvaluepair("yaw", Float.toString(yaw)));
+		
+		datalist.add(new keyvaluepair("motor1_pwm", Integer.toString(motor1_pwm)));
+		datalist.add(new keyvaluepair("motor2_pwm", Integer.toString(motor2_pwm)));
+		datalist.add(new keyvaluepair("motor3_pwm", Integer.toString(motor3_pwm)));
+		datalist.add(new keyvaluepair("motor4_pwm", Integer.toString(motor4_pwm)));
 		
 
 		return jsonHelper.toJsonObject(datalist);
