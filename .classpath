@@ -7,29 +7,29 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX19"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/com.fasterxml.jackson.core.jackson-annotations_2.13.2.v20220426-1653.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/com.fasterxml.jackson.core.jackson-core_2.13.2.v20220426-1653.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/com.fasterxml.jackson.core.jackson-databind_2.13.2.v20220426-1653.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/net.bytebuddy.byte-buddy_1.9.0.v20181107-1410.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/net.bytebuddy.byte-buddy-agent_1.9.0.v20181106-1534.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.apache.commons.lang3_3.1.0.v201403281430.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.junit_4.13.2.v20211018-1956.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.mockito.mockito-core_2.23.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.objenesis_2.6.0.v20180420-1519.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.slf4j.api_1.7.30.v20200204-2150.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.bundle_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.libusb4java.darwin-x86-64_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.libusb4java.linux-aarch64_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.libusb4java.linux-arm_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.libusb4java.linux-x86_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.libusb4java.linux-x86-64_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.libusb4java.win32-x86_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/org.usb4java.libusb4java.win32-x86-64_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/se.bitcraze.crazyflie.lib.source_0.0.2.202209191817.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/se.bitcraze.crazyflie.lib_0.0.2.202209191817.jar"/>
-	<classpathentry kind="lib" path="C:/ProgrammingCourses/bitcraze/se.bitcraze.crazyflie.lib/se.bitcraze.crazyflie.lib-repository/target/repository/plugins/usb4java-javax_javax.usb.api_1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tallnerc/Downloads/jar_files (1)/slf4j-simple-1.7.30.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/MySQL Connector J 8.0/mysql-connector-java-8.0.29.jar"/>
+	<classpathentry kind="lib" path="lib/com.fasterxml.jackson.core.jackson-annotations_2.13.2.v20220426-1653.jar"/>
+	<classpathentry kind="lib" path="lib/com.fasterxml.jackson.core.jackson-core_2.13.2.v20220426-1653.jar"/>
+	<classpathentry kind="lib" path="lib/com.fasterxml.jackson.core.jackson-databind_2.13.2.v20220426-1653.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.29.jar"/>
+	<classpathentry kind="lib" path="lib/net.bytebuddy.byte-buddy_1.9.0.v20181107-1410.jar"/>
+	<classpathentry kind="lib" path="lib/net.bytebuddy.byte-buddy-agent_1.9.0.v20181106-1534.jar"/>
+	<classpathentry kind="lib" path="lib/org.apache.commons.lang3_3.1.0.v201403281430.jar"/>
+	<classpathentry kind="lib" path="lib/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+	<classpathentry kind="lib" path="lib/org.junit_4.13.2.v20211018-1956.jar"/>
+	<classpathentry kind="lib" path="lib/org.mockito.mockito-core_2.23.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.objenesis_2.6.0.v20180420-1519.jar"/>
+	<classpathentry kind="lib" path="lib/org.slf4j.api_1.7.30.v20200204-2150.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.bundle_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.libusb4java.darwin-x86-64_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.libusb4java.linux-aarch64_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.libusb4java.linux-arm_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.libusb4java.linux-x86_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.libusb4java.linux-x86-64_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.libusb4java.win32-x86_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.usb4java.libusb4java.win32-x86-64_1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/se.bitcraze.crazyflie.lib_0.0.2.202209191817.jar"/>
+	<classpathentry kind="lib" path="lib/se.bitcraze.crazyflie.lib.source_0.0.2.202209191817.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.30.jar"/>
+	<classpathentry kind="lib" path="lib/usb4java-javax_javax.usb.api_1.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
