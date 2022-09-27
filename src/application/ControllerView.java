@@ -3,8 +3,6 @@ package application;
 import crazyflie.CrazyflieModel;
 import crazyflie.Logging;
 import crazyflie.ParameterHandling;
-import database.LoggerObject;
-import databaseHelpers.DatabaseHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -120,8 +118,7 @@ public class ControllerView extends VBox {
 		btnCrazyConnect.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
-				myCrazyflie.start();
+				myCrazyflie.cont();
 		    }
 		});
 		btnCrazyDisconnect = new Button("Disconnect");
@@ -129,8 +126,8 @@ public class ControllerView extends VBox {
 		btnCrazyDisconnect.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
-				myCrazyflie.stop();
+
+				myCrazyflie.pause();
 		    }
 		});
 		

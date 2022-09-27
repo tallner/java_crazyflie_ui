@@ -1,7 +1,5 @@
 package crazyflie;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import se.bitcraze.crazyflie.lib.crazyflie.Crazyflie;
 import se.bitcraze.crazyflie.lib.crazyflie.DataListener;
 import se.bitcraze.crazyflie.lib.crazyradio.ConnectionData;
@@ -26,11 +24,13 @@ import se.bitcraze.crazyflie.lib.usb.UsbLinkJava;
  */
  
 public class CrazyflieModel implements Runnable {
+	
+	public Object lock = this;
+    public boolean pause = false;
 
     private Crazyflie mCrazyflie;
     private StringBuffer consoleBuffer = new StringBuffer();
     
-    private AtomicBoolean exit = new AtomicBoolean();
     private String name;
     private Thread t;
     
@@ -44,9 +44,7 @@ public class CrazyflieModel implements Runnable {
         
     	name = _name;
     	t = new Thread(this, name);
-    	exit.set(false);
     	
-
         mCrazyflie = new Crazyflie(new RadioDriver(new UsbLinkJava()));
 
         mCrazyflie.addDataListener(new DataListener(CrtpPort.CONSOLE) {
@@ -142,29 +140,48 @@ public class CrazyflieModel implements Runnable {
 	
     @Override
 	public void run() {
-    	mCrazyflie.connect();
-    	
-    	while (!exit.get()) {
+
+    	while (true) {
+    		pauseThread();
     		runMotors(this.roll,this.pitch,0, thrust);
 		}
-    	
-    	mCrazyflie.disconnect();
-    	
-    	t.interrupt();
+
 	}
     
-    /** start the underlying thread */
-    public void start() {
-    	exit.set(false);
-    	t.start();
-    }
-    
- // for stopping the thread
-    public void stop()
+    /** pause the underlying thread */
+    public void pause ()
     {
-        exit.set(true); 
+        pause = true;
+        mCrazyflie.disconnect();
     }
 
+    /** start/continue the underlying thread */
+    public void cont ()
+    {
+    	if (!t.isAlive())
+    		t.start();
+    	
+    	mCrazyflie.connect();
+    	pause = false;
+        
+        synchronized (lock)
+        {
+            lock.notify();
+        }
+    }
     
+    private void pauseThread ()
+    {
+        synchronized (lock)
+        {
+            if (pause)
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+        }
+    }
     
 }
