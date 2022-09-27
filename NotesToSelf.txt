@@ -1,4 +1,4 @@
-Java FX GUI
+Java FX IoT
 IoT projekt --> drönare läsa skriv info - logga och spara ner i databas
 avancerat: trådar, kompilera externt bibilotek, hantera loggning av data från prylen tillräckligt?
 
