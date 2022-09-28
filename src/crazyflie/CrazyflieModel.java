@@ -25,7 +25,6 @@ import se.bitcraze.crazyflie.lib.usb.UsbLinkJava;
  
 public class CrazyflieModel implements Runnable {
 	
-	public Object lock = this;
     public boolean pause = false;
 
     private Crazyflie mCrazyflie;
@@ -164,19 +163,19 @@ public class CrazyflieModel implements Runnable {
     	mCrazyflie.connect();
     	pause = false;
         
-        synchronized (lock)
+        synchronized (this)
         {
-            lock.notify();
+            notify();
         }
     }
     
     private void pauseThread ()
     {
-        synchronized (lock)
+        synchronized (this)
         {
             if (pause)
 				try {
-					lock.wait();
+					wait();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
